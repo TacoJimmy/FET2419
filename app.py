@@ -65,8 +65,8 @@ def read_MEinfor(a, b): # send data to cloud
     AC01PW_ID = 2
     AC02PW_ID = 3
     AC03PW_ID = 4 
-    AC04PW_ID = 6 #id 6 = empty
-    AC05PW_ID = 6 #id 6 = empty
+    #AC04PW_ID = 6 #id 6 = empty
+    #AC05PW_ID = 6 #id 6 = empty
     all_token = findtoken.total_token()
 
        
@@ -75,8 +75,8 @@ def read_MEinfor(a, b): # send data to cloud
     eftmqtt.connect_ACMeter(all_token['ACMeter01'], MeterPORT, AC01PW_ID, 1)
     eftmqtt.connect_ACMeter(all_token['ACMeter02'], MeterPORT, AC02PW_ID, 1)
     eftmqtt.connect_ACMeter(all_token['ACMeter03'], MeterPORT, AC03PW_ID, 1)
-    eftmqtt.connect_ACMeter(all_token['ACMeter04'], MeterPORT, AC04PW_ID, 2)
-    eftmqtt.connect_ACMeter(all_token['ACMeter05'], MeterPORT, AC05PW_ID, 2)
+    #eftmqtt.connect_ACMeter(all_token['ACMeter04'], MeterPORT, AC04PW_ID, 2)
+    #eftmqtt.connect_ACMeter(all_token['ACMeter05'], MeterPORT, AC05PW_ID, 2)
     
     #print("send data to cloud 02")
 
@@ -85,15 +85,15 @@ def read_ACinfor(a, b): # send data to cloud
     AC01_ID = 1
     AC02_ID = 2
     AC03_ID = 3
-    AC04_ID = 6 #id 6 = empty
-    AC05_ID = 6 #id 6 = empty
+    #AC04_ID = 6 #id 6 = empty
+    #AC05_ID = 6 #id 6 = empty
     all_token = findtoken.total_token()
 
     eftmqtt.connect_ACstatus(all_token['ACinfor01'], ACPORT, AC01_ID)
     eftmqtt.connect_ACstatus(all_token['ACinfor02'], ACPORT, AC02_ID)
     eftmqtt.connect_ACstatus(all_token['ACinfor03'], ACPORT, AC03_ID)
-    eftmqtt.connect_ACstatus(all_token['ACinfor04'], ACPORT, AC04_ID)
-    eftmqtt.connect_ACstatus(all_token['ACinfor05'], ACPORT, AC05_ID)
+    #eftmqtt.connect_ACstatus(all_token['ACinfor04'], ACPORT, AC04_ID)
+    #eftmqtt.connect_ACstatus(all_token['ACinfor05'], ACPORT, AC05_ID)
     #print("send data to cloud 01")
 
 def demandcal(a, b):
