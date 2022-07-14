@@ -144,16 +144,21 @@ def demandcal(a, b):
     #print (ipcInfor.Readdemalrchang())
 
 def AutoCtrl(a, b):
-    if CtrlMode.read_AutoMode() == 0:
+    automode = CtrlMode.read_AutoMode()
+    if automode == 0:
+        print (automode)
         status = opentime.CheckDoorClose()
+        print (status)
         if status == 0:
-            if CtrlMode.read_CuntAuto() == 0:
+            curntauto = CtrlMode.read_CuntAuto()
+            print (curntauto)
+            if curntauto == 0:
                 ACCtrl.AC_OPset('/dev/ttyS4',1,0) #冷氣
                 time.sleep(5)
                 ACCtrl.AC_OPset('/dev/ttyS4',2,2) #送風
                 time.sleep(5)
                 
-            if CtrlMode.read_AutoMode() == 1:
+            if curntauto == 1:
                 ACCtrl.AC_OPset('/dev/ttyS4',1,2)
                 time.sleep(5)
                 ACCtrl.AC_OPset('/dev/ttyS4',2,0)
