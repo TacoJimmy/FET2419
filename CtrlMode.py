@@ -20,6 +20,13 @@ def read_AutoMode():
         ACCtrlMode.close
     return PWdemand['Automode']
 
+def read_CuntAuto():
+    with open('Ctrlmode.json') as ACCtrlMode:
+        PWdemand = json.load(ACCtrlMode)
+        ACCtrlMode.close
+    return PWdemand['Autocunt']
+
+
 def count_automode():
     with open('Ctrlmode.json') as ACCtrlChange:
         ACOPSET = json.load(ACCtrlChange)
