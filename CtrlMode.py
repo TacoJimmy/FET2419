@@ -11,14 +11,13 @@ def read_mode():
     with open('Ctrlmode.json') as ACCtrlMode:
         ACOperate = json.load(ACCtrlMode)
         ACCtrlMode.close
-        #print (ACOperate)
+        #print(ACOperate)
     return ACOperate
 
 def read_AutoMode():
     with open('Ctrlmode.json') as ACCtrlMode:
         PWdemand = json.load(ACCtrlMode)
         ACCtrlMode.close
-        
     return PWdemand['Automode']
 
 def count_automode():
@@ -34,7 +33,7 @@ def count_automode():
         json.dump(ACOPSET, ACCtrlChange)
         ACCtrlChange.close
     return (ACOPSET['Autocunt'])
-    
+
 def read_Ctrldemand():
     with open('Ctrlmode.json') as ACCtrlMode:
         PWdemand = json.load(ACCtrlMode)
