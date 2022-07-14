@@ -144,31 +144,31 @@ def demandcal(a, b):
     #print (ipcInfor.Readdemalrchang())
 
 def AutoCtrl(a, b):
-    if CtrlMode.read_automode == 0:
-        status = opentime.CheckDoorClose
+    if CtrlMode.read_AutoMode() == 0:
+        status = opentime.CheckDoorClose()
         if status == 0:
-            if CtrlMode.read_AutoMode == 0:
+            if CtrlMode.read_CuntAuto() == 0:
                 ACCtrl.AC_OPset('/dev/ttyS4',1,0) #冷氣
                 time.sleep(5)
                 ACCtrl.AC_OPset('/dev/ttyS4',2,2) #送風
                 time.sleep(5)
                 ACCtrl.AC_OPset('/dev/ttyS4',3,2) #送風
                 time.sleep(5)
-            if CtrlMode.read_AutoMode == 1:
+            if CtrlMode.read_AutoMode() == 1:
                 ACCtrl.AC_OPset('/dev/ttyS4',1,2)
                 time.sleep(5)
                 ACCtrl.AC_OPset('/dev/ttyS4',2,0)
                 time.sleep(5)
                 ACCtrl.AC_OPset('/dev/ttyS4',3,2)
                 time.sleep(5)
-            if CtrlMode.read_AutoMode == 2:
+            if CtrlMode.read_AutoMode() == 2:
                 ACCtrl.AC_OPset('/dev/ttyS4',1,2)
                 time.sleep(5)
                 ACCtrl.AC_OPset('/dev/ttyS4',2,2)
                 time.sleep(5)
                 ACCtrl.AC_OPset('/dev/ttyS4',3,0)
                 time.sleep(5)
-        CtrlMode.count_automode        
+            CtrlMode.count_automode()        
     
 def ipc_subscribejob(ipc):
     ipcinfo_token = findtoken.device_token('IPC')
