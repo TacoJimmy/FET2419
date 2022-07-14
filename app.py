@@ -18,7 +18,7 @@ import trymqtt
 import findtoken
 import ipcalert
 import CtrlMode
-
+import opentime
 
 a = [0,0,0,0,0,0,0]
 app = flask.Flask(__name__)
@@ -52,6 +52,13 @@ class Config(object):
         {
             'id': 'demandcal',
             'func': '__main__:demandcal',
+            'args': (1, 2),
+            'trigger': 'interval',
+            'minutes': 15
+        },
+        {
+            'id': 'AutoCtrl',
+            'func': '__main__:AutoCtrl',
             'args': (1, 2),
             'trigger': 'interval',
             'minutes': 15
@@ -135,7 +142,33 @@ def demandcal(a, b):
                 ipcalert.send_alert(ipcalr_token, 1,2,0)
                 ipcInfor.changdemalr(0)
     #print (ipcInfor.Readdemalrchang())
-        
+
+def AutoCtrl(a, b):
+    if CtrlMode.read_automode == 0:
+        status = opentime.CheckDoorClose
+        if status == 0:
+            if CtrlMode.read_AutoMode == 0:
+                ACCtrl.AC_OPset('/dev/ttyS4',1,0) #冷氣
+                time.sleep(5)
+                ACCtrl.AC_OPset('/dev/ttyS4',2,2) #送風
+                time.sleep(5)
+                ACCtrl.AC_OPset('/dev/ttyS4',3,2) #送風
+                time.sleep(5)
+            if CtrlMode.read_AutoMode == 1:
+                ACCtrl.AC_OPset('/dev/ttyS4',1,2)
+                time.sleep(5)
+                ACCtrl.AC_OPset('/dev/ttyS4',2,0)
+                time.sleep(5)
+                ACCtrl.AC_OPset('/dev/ttyS4',3,2)
+                time.sleep(5)
+            if CtrlMode.read_AutoMode == 2:
+                ACCtrl.AC_OPset('/dev/ttyS4',1,2)
+                time.sleep(5)
+                ACCtrl.AC_OPset('/dev/ttyS4',2,2)
+                time.sleep(5)
+                ACCtrl.AC_OPset('/dev/ttyS4',3,0)
+                time.sleep(5)
+        CtrlMode.count_automode        
     
 def ipc_subscribejob(ipc):
     ipcinfo_token = findtoken.device_token('IPC')
