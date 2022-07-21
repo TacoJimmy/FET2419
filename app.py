@@ -61,7 +61,7 @@ class Config(object):
             'func': '__main__:AutoCtrl',
             'args': (1, 2),
             'trigger': 'interval',
-            'minutes': 15
+            'minutes': 1
         }
     ]
 
@@ -153,12 +153,20 @@ def AutoCtrl(a, b):
             curntauto = CtrlMode.read_CuntAuto()
             print (curntauto)
             if curntauto == 0:
+                AC_Infor1 = ACCtrl.AC_ReadFullFunction('/dev/ttyS4',1)
+                if AC_Infor1[4] <= 25:
+                    ACCtrl.AC_SetTemp('/dev/ttyS4',1,24)
+                AC_Infor2 = ACCtrl.AC_ReadFullFunction('/dev/ttyS4',2)
+                if AC_Infor2[4] <= 25:
+                    ACCtrl.AC_SetTemp('/dev/ttyS4',2,24)
+
                 ACCtrl.AC_OPset('/dev/ttyS4',1,0) #冷氣
                 time.sleep(5)
                 ACCtrl.AC_OPset('/dev/ttyS4',2,2) #送風
                 time.sleep(5)
                 
             if curntauto == 1:
+                
                 ACCtrl.AC_OPset('/dev/ttyS4',1,2)
                 time.sleep(5)
                 ACCtrl.AC_OPset('/dev/ttyS4',2,0)
