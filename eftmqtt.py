@@ -312,7 +312,7 @@ def connect_ACstatus(AC_token, COMport, ACID):
             ACCtrl.AC_OPset(COMport,ACID,2) #trun AC to fan only mode
 
     AC_Status = ACCtrl.AC_ReadFullFunction(COMport, ACID)    
-    
+    AC_humid = ACCtrl.AC_ReadHumi('/dev/ttyS4',10)
     # 警報連線異常
     if AC_Status[5] == 2:
         ipcalr_token = findtoken.device_token('IPCAlr')
@@ -323,6 +323,7 @@ def connect_ACstatus(AC_token, COMport, ACID):
         "emsstorewindspeed":AC_Status[2],
         "emsstoresettemperature":AC_Status[3],
         "emsstoreroomtemperature": AC_Status[4],
+        "emsstoreroomhumidity":AC_humid,
         "emsvendorinfo":"歐陸通風-ADTEK-AEMDR TEL:0935-534163",
         "emsdevicealive":AC_Status[5]
         }
